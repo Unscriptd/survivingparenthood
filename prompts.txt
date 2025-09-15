@@ -1,0 +1,150 @@
+Build a production-ready affiliate + content site called SurvivingParenthood.co.
+The site helps parents survive parenthood through honest product reviews, survival hacks, and practical guides.
+The brand voice is raw, witty, and relatable — telling the truth about the chaos of raising kids while giving parents tested gear, tips, and tricks to make it through.
+
+Architecture
+
+Framework: Next.js + TypeScript + TailwindCSS (static-friendly, fast, modular).
+
+Content in Markdown (/content/) with YAML front-matter for SEO and metadata.
+
+Centralized affiliate link handling in /data/affiliates.json.
+
+.env variables for GA4 and Klaviyo newsletter integration.
+
+Design
+
+Theme: Survival-kit inspired but modern and approachable.
+
+Typography: Bold sans-serif (Inter, Poppins, Helvetica Neue).
+
+Colors: Neutral base (white, gray, black) + one bold accent (deep orange or teal).
+
+Tone: Honest, raw, unpolished — reads like a parent-friend, not a corporate manual.
+
+Responsive + Accessible: Mobile-first, WCAG AA+.
+
+Pages & Templates
+
+Home:
+
+Hero headline: “The Sh*t No One Told You About Parenthood”
+
+Subhead: “Honest reviews, real hacks, and survival guides for getting through the chaos — tested by parents, not corporations.”
+
+CTA1: “Find Your Survival Gear”
+
+CTA2: “Read the Latest Hacks”
+
+Featured product review
+
+Featured guide
+
+Newsletter signup
+
+Quick-hit “top hacks” list
+
+Product Review Template: Hero image, quick verdict, pros/cons, specs table, price box, affiliate CTA, FAQs, disclosure, “related survival gear.”
+
+Guide Template: Listicle format (“10 Hacks to Survive Traveling with Kids”) with inline product cards and affiliate CTAs.
+
+Utility: About, Contact, Privacy, Terms, Affiliate Disclosure, Accessibility.
+
+Affiliate Setup
+
+Links pulled from /data/affiliates.json via affiliate_slug.
+
+Outbound links auto-tagged: rel="sponsored nofollow noopener" + target="_blank".
+
+Support cloaked redirects: /go/:slug.
+
+CTA buttons merchant-clear: “View on Amazon,” “Shop at BrandX.”
+
+Compliance
+
+FTC/ASA disclosure banner injected above first affiliate link on reviews/guides.
+
+GDPR/CCPA cookie consent with granular controls.
+
+Reusable disclaimer block for product trademarks/logos.
+
+SEO & Schema
+
+Titles, slugs, H1s optimized around parent survival + reviews/hacks.
+
+Auto-generate sitemap.xml, robots.txt, canonical tags.
+
+Meta: Open Graph + Twitter cards.
+
+JSON-LD:
+
+Organization on Home
+
+BreadcrumbList on content pages
+
+Product + AggregateRating placeholders on reviews
+
+ItemList schema on guides
+
+Analytics & Email
+
+GA4 wired through /lib/analytics.ts using env var GA_MEASUREMENT_ID. Must track affiliate clicks.
+
+Newsletter signup form wired to Klaviyo using env var KLAVIYO_PUBLIC_KEY.
+
+Performance
+
+Optimize Core Web Vitals: lazy-loaded images, srcset responsive, AVIF/WebP fallbacks, inline critical CSS, no layout shifts.
+
+Authoring & A/B Testing
+
+Markdown front-matter fields:
+
+title, description, keywords[], canonical, published, updated, author, product_id, affiliate_slug, best_for[], rating, price, price_source, last_checked
+
+
+Landing copy (hero headline, subhead, CTA) editable via /content/landing.md for A/B testing.
+
+Deliverables
+
+Home Page with hero, tagline, featured review, featured guide.
+
+1 Product Review seeded (e.g., stroller or baby monitor).
+
+1 Survival Guide seeded (e.g., “10 Parenting Hacks That Actually Work”).
+
+/data/affiliates.json seeded with one Amazon sample + one third-party link.
+
+/content/ seeded with landing.md, one review (review-baby-monitor.md), and one guide (guide-parenting-hacks.md).
+
+Components: Hero, ProductCard, ProsCons, SpecsTable, CompareTable, PriceTag, FAQ, Disclosure, NewsletterSignup, CookieConsent.
+
+.env.example:
+
+GA_MEASUREMENT_ID=G-XXXXXXXXXX
+KLAVIYO_PUBLIC_KEY=pk_XXXXXXXXXXXXXXXX
+
+
+README.md explaining how to:
+
+Edit content and landing copy
+
+Add new affiliate links/products
+
+Configure GA4 and Klaviyo
+
+Export and deploy
+
+Output
+
+After generation, show:
+
+File tree
+
+How to edit/add reviews & guides
+
+How to update /data/affiliates.json
+
+How to configure GA4/Klaviyo
+
+How to export/deploy
